@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dse4ug0ik78hw"]
+
+[ext_resource type="Texture2D" uid="uid://cv36jqydo4jmq" path="res://assets/biospritesheet.png" id="1_igo8b"]
+[ext_resource type="Script" uid="uid://dg7dp4pnds12j" path="res://fauna/fox.gd" id="1_mbjuu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbjuu"]
+atlas = ExtResource("1_igo8b")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dfgxk"]
+radius = 500.0
+
+[node name="fox" type="Area2D" groups=["mob"]]
+script = ExtResource("1_mbjuu")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_mbjuu")
+
+[node name="hitbox" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(11, -50, -4.8, -50, -18, -36.8, -18, -36, -25.9, -36, -27, -37.7, -27, -39.3, -41, -45.3, -41, -48.2, -47.5, -45, -50, -45, -50, -42.4, -47.9, -14, -47.3, -14, -49.8, 3, -50, 37.4, -45, 44.5, -45, 46.4, -36, 49.4, -36, 50, 34, 50, 47.7, 38, 50, 38, 50, -0.799999, 36.9, -15, 22, -15, 22, -18.9, 11, -28)
+
+[node name="vision" type="Area2D" parent="."]
+monitorable = false
+
+[node name="shape" type="CollisionShape2D" parent="vision"]
+shape = SubResource("CircleShape2D_dfgxk")
+
+[node name="stat" type="TextEdit" parent="."]
+offset_left = -18.0
+offset_top = -94.0
+offset_right = 31.0
+offset_bottom = -55.0

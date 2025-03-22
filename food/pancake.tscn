@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bytqgo3skckf5"]
+
+[ext_resource type="Script" uid="uid://v48l47ka5647" path="res://food/pancake.gd" id="1_2vtwk"]
+[ext_resource type="Texture2D" uid="uid://cv36jqydo4jmq" path="res://assets/biospritesheet.png" id="1_pposb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3f01y"]
+atlas = ExtResource("1_pposb")
+region = Rect2(300, 50, 50, 50)
+
+[node name="pancake" type="Area2D" groups=["food"]]
+script = ExtResource("1_2vtwk")
+metadata/food_type = "pancake"
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_3f01y")
+
+[node name="hitbox" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -20.1, -7, -15, -18, -12, -20, -11, -25, -3, -25, 17, -22, 22, -15, 25, 16, 25, 25, 20, 25, -6.6, 12, -17)

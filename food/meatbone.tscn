@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw438536rknsp"]
+
+[ext_resource type="Script" uid="uid://bryht5echbwq1" path="res://food/meatbone.gd" id="1_f02ee"]
+[ext_resource type="Texture2D" uid="uid://cv36jqydo4jmq" path="res://assets/biospritesheet.png" id="1_rv0la"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3f01y"]
+atlas = ExtResource("1_rv0la")
+region = Rect2(300, 0, 100, 50)
+
+[node name="meatbone" type="Area2D" groups=["food"]]
+script = ExtResource("1_f02ee")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_3f01y")
+
+[node name="hitbox" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-13, -25, -13, -23.8, -13.8, -23, -21.8, -23, -33, -11.8, -33, -8.8, -35, -10.1, -35, -12, -46, -12, -50, -7, -50, 16.5, -47, 18.9, -47, 21, -33.9, 21, -31.9, 18, -30, 18, -25, 24.6, 28.4, 25, 35.1, 15.8, 39.5, 18, 46, 18, 50, 13, 50, -7.6, 47, -10, 47, -12, 35.9, -12, 26, -20.9, 26, -22.7, 15, -24.8)
+metadata/food_type = "meatbone"

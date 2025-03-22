@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://w8lbfifncird"]
+
+[ext_resource type="Script" uid="uid://d2lgy2khawe6g" path="res://fauna/ghost.gd" id="1_umhbu"]
+[ext_resource type="Texture2D" uid="uid://cv36jqydo4jmq" path="res://assets/biospritesheet.png" id="1_useon"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbjuu"]
+atlas = ExtResource("1_useon")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dfgxk"]
+radius = 500.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_umhbu"]
+radius = 150.0
+
+[node name="ghost" type="Area2D" groups=["mob"]]
+script = ExtResource("1_umhbu")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_mbjuu")
+
+[node name="hitbox" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(7, -49, -15, -49, -15, -47.2, -20.5, -44, -23.9, -44, -35, -30.7, -35, -21.6, -41.1, -20, -45.2, -20, -49.1, -13, -50, -13, -50, 5.5, -38, 14.7, -38, 29.1, -35, 31.1, -35, 39.2, -21, 47.1, -21, 49.3, -3, 46.7, 6, 47.7, 6, 49, 49, 48, 50, 48, 50, 38.8, 45.4, 37, 38.3, 21, 37, 21, 37, 14.9, 34, 12.9, 34, 2.9, 31, 0.900002, 31, -16.4, 25, -30.4, 25, -36.1, 7, -47.1)
+
+[node name="vision" type="Area2D" parent="."]
+monitorable = false
+
+[node name="shape" type="CollisionShape2D" parent="vision"]
+shape = SubResource("CircleShape2D_dfgxk")
+
+[node name="leech" type="Area2D" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="leech"]
+shape = SubResource("CircleShape2D_umhbu")
