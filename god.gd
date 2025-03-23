@@ -4,12 +4,12 @@ const SCREEN_X = 1280
 const SCREEN_Y = 720
 const SCALE = Vector2(.5, .5)
 
-const N_GHOSTS = 5
-const N_MEEPS = 20
-const N_FOX = 0
+const N_GHOSTS = 0
+const N_MEEPS = 25
+const N_FOX = 2
 const N_TREES = 0
-const N_PASTRY = 40
-const N_MEAT = 0
+const N_PASTRY = 250
+const N_MEAT = 5
 
 const MUTX = .2
 
@@ -34,8 +34,8 @@ const fox_stats = {
 }
 
 const meep_stats = {
-	"hunger": 5,
-	"speed": 60,
+	"hunger": 10,
+	"speed": 100,
 	"affin": {
 		"tree": 0,
 		"ghost": -1,
@@ -48,7 +48,6 @@ const meep_stats = {
 }
 
 const ghost_stats = {
-	"health": 4,
 	"hunger": 5,
 	"speed": 10,
 	"affin": {

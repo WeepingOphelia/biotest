@@ -1,5 +1,5 @@
 res://main.tscn
-res://fauna/mob.gd
+res://god.gd
 res://ui.tscn
 res://fauna/fox.tscn
 res://flora/tree.tscn
@@ -8,6 +8,5 @@ res://food/tart.tscn
 res://food/pancake.tscn
 res://food/meatbone.tscn
 res://fauna/meep.tscn
-res://fauna/meep.gd
-res://god.gd
+res://fauna/mob.gd
 res://fauna/ghost.gd

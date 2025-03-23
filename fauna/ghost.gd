@@ -22,4 +22,4 @@ func absorb():
 			if obj.mob_type in ["meep", "fox"]:
 				obj.take_damage(2)
 				hunger += 1
-				print("absorbed health")
+				print("health absorbed")

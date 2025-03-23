@@ -12,9 +12,11 @@ var refractory_period = 10
 var refract = 10
 
 var velocity: Vector2
+var moment: Vector2 = Vector2.ZERO
 var wander_velocity
 
-var hunger_check = 50
+var hunger_check = 2
+var reaction_time = .5
 
 signal died(obj)
 signal spawn(type, pos, stats)
@@ -30,18 +32,15 @@ func _process(delta):
 			if obj.is_in_group("mob"):
 				if obj.mob_type == mob_type and obj.fecund:
 					reproduce(obj)
-	var nearby = detect()
-	if nearby:
-		velocity = react(nearby)
+	reaction_time += delta
+	if reaction_time >= .5:
+		var nearby = detect()
+		if nearby:
+			velocity = react(nearby)
+		reaction_time = 0
 	stay_in_bounds()
 	if velocity == Vector2.ZERO:
-		if wander_velocity:
-			velocity = wander_velocity
-		else:
-			wander_velocity = wander()
-			velocity = wander_velocity
-	else:
-		wander_velocity = false
+		velocity = wander().normalized()
 	position += velocity * speed * delta
 
 func detect():
@@ -100,7 +99,10 @@ func react(objects):
 			var dis = max(position.distance_squared_to(obj.position), 1.0)
 			influence += dir / dis * dis
 		reaction += influence * affin[type]
-	return reaction.normalized()
+	if reaction.length() < 0.1:
+		return moment
+	moment = ((reaction * .5) + (moment * .8)).normalized()
+	return moment
 
 func recombine(f1, f2):
 	var new_gene = f1 + f2 / 2
@@ -138,10 +140,10 @@ func set_type(type):
 	mob_type = type
 
 func starve(delta):
-	hunger_check -= delta * 10
+	hunger_check -= delta
 	if hunger_check <= 0:
 		hungry()
-		hunger_check = 50
+		hunger_check = 1
 	refract += delta
 	if hunger > initial_hunger * .5 && refract > refractory_period && mob_type != "ghost":
 		fecund = true
@@ -163,11 +165,13 @@ func stay_in_bounds():
 		force.y += 5
 
 	velocity += force
-	velocity = velocity.limit_length(speed)  # Prevent runaway speeds
+	velocity = velocity.normalized()  # Prevent runaway speeds
 
 func take_damage(val):
 	for i in range(val):
 		hungry()
 
 func wander():
-	return Vector2.from_angle(deg_to_rad(randi_range(1, 360)))
+	if wander_velocity == null || randf() < 0.01:  # Change direction rarely
+		wander_velocity = Vector2.from_angle(randf_range(0, TAU))
+	return wander_velocity
