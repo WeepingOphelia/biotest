@@ -27,8 +27,8 @@ shape = SubResource("CircleShape2D_5v2tj")
 
 [node name="stat" type="TextEdit" parent="."]
 visible = false
-offset_left = -41.0
-offset_top = -87.0
-offset_right = 41.0
+offset_left = -175.0
+offset_top = -88.0
+offset_right = 180.0
 offset_bottom = -29.0
 placeholder_text = "TEST"

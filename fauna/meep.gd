@@ -7,8 +7,7 @@ func _ready():
 func _process(delta):
 	super._process(delta)
 	if $stat.visible:
-		$stat.text = str(hunger)
-
+		$stat.text = str(hunger) + "||" + str(hunger >= initial_hunger * fertility_threshold) + "||" + str(fertility_threshold)
 
 func set_stat(status):
 	$stat.visible = status
